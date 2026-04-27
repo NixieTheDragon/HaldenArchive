@@ -116,7 +116,7 @@ button {
 <button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
 <h2>AURI</h2>
 <div class="file" onclick="openPage('newspaper','/AURI/NEWSPAPER.txt')">NEWSPAPER.txt</div>
-<div class="file" onclick="openPage('intake','/AURI/INTAKE.txt')">INTAKE.txt</div>
+<div class="file" onclick="askPassword('intake')">INTAKE.txt</div>
 <div class="file" onclick="openPage('psych','/AURI/PSYCH_EVAL.txt')">PSYCH_EVAL.txt</div>
 <div class="file red" onclick="openPage('corrupt','/AURI/DO_NOT_REPEAT.txt')">DO_NOT_REPEAT.txt</div>
 </div>
@@ -586,6 +586,30 @@ It remembers her.
 <script>
 const password = "HAWTHORNE1996";
 const second = "LISTENEDBACK";
+  const filePasswords = {
+  intake: {
+    password: "ELIZABETH",
+    path: "/AURI/INTAKE.txt"
+  },
+  blood: {
+    password: "QUIETER",
+    path: "/AURI/BLOOD.txt"
+  },
+  corrupt: {
+    password: "DO_NOT_REPEAT",
+    path: "/AURI/DO_NOT_REPEAT.txt"
+  }
+};
+
+function askPassword(fileId) {
+  const entered = prompt("ENTER FILE ACCESS KEY");
+
+  if (entered === filePasswords[fileId].password) {
+    openPage(fileId, filePasswords[fileId].path);
+  } else {
+    alert("ACCESS DENIED");
+  }
+}
 
 function checkPassword(){
   if(document.getElementById("password").value === password){
