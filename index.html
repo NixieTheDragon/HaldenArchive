@@ -586,30 +586,7 @@ It remembers her.
 <script>
 const password = "HAWTHORNE1996";
 const second = "LISTENEDBACK";
-const filePasswords = {
-  intake: {
-    password: "AURI",
-    path: "/AURI/INTAKE.txt"
-  },
-  psych: {
-    password: "AURI",
-    path: "/AURI/PSYCH_EVAL.txt"
-  },
-  corrupt: {
-    password: "AURI",
-    path: "/AURI/DO_NOT_REPEAT.txt"
-  }
-};
 
-function askPassword(fileId) {
-  const entered = prompt("ENTER FILE ACCESS KEY");
-
-  if (entered === filePasswords[fileId].password) {
-    openPage(fileId, filePasswords[fileId].path);
-  } else {
-    alert("ACCESS DENIED");
-  }
-}
 
 function checkPassword(){
   if(document.getElementById("password").value === password){
