@@ -115,11 +115,10 @@ button {
 <div id="auri" class="page hidden">
 <button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
 <h2>AURI</h2>
-<div class="file" onclick="openPage('newspaper','/AURI/NEWSPAPER.txt')">NEWSPAPER.txt</div>
-<div class="file" onclick="openPage('intake','/AURI/INTAKE.txt')">INTAKE.txt</div>
-<div class="file" onclick="openPage('psych','/AURI/PSYCH_EVAL.txt')">PSYCH_EVAL.txt</div>
-<div class="file red" onclick="openPage('corrupt','/AURI/DO_NOT_REPEAT.txt')">DO_NOT_REPEAT.txt</div>
-</div>
+<div class="file" onclick="openPasswordBox('newspaper')">NEWSPAPER.txt</div>
+<div class="file" onclick="openPasswordBox('intake')">INTAKE.txt</div>
+<div class="file" onclick="openPasswordBox('psych')">PSYCH_EVAL.txt</div>
+<div class="file red" onclick="openPasswordBox('corrupt')">DO_NOT_REPEAT.txt</div></div>
 
 <div id="newspaper" class="page hidden">
 <button onclick="openPage('auri','/AURI/')">Back</button>
@@ -584,31 +583,52 @@ It remembers her.
 </div>
 
 <script>
-const password = "HAWTHORNE1996";
-const second = "LISTENEDBACK";
+let currentFile = null;
 
-
-function checkPassword(){
-  if(document.getElementById("password").value === password){
-    document.getElementById("login").style.display="none";
-    document.getElementById("archive").classList.remove("hidden");
-  } else {
-    document.getElementById("message").textContent="ACCESS DENIED";
+const filePasswords = {
+  intake: {
+    password: "ELIZABETH",
+    path: "/AURI/INTAKE.txt"
+  },
+  blood: {
+    password: "QUIETER",
+    path: "/AURI/BLOOD.txt"
+  },
+  corrupt: {
+    password: "GLASS",
+    path: "/AURI/DO_NOT_REPEAT.txt"
   }
+};
+
+function openPasswordBox(fileId) {
+  currentFile = fileId;
+  document.getElementById("filePassInput").value = "";
+  document.getElementById("filePassMsg").textContent = "";
+
+  document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+  document.getElementById("filePasswordBox").classList.remove("hidden");
 }
 
-function checkSecond(){
-  if(document.getElementById("secondPass").value === second){
-    openPage('deep','/ROOT/[REDACTED]/FILE');
-  } else {
-    document.getElementById("secondMsg").textContent="DENIED";
-  }
+function closePasswordBox() {
+  openPage('auri', '/ROOT/SUBJECTS/AURI/');
 }
 
-function openPage(id, path){
-  document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
-  document.getElementById("path").textContent = path;
+function submitFilePassword() {
+  const input = document.getElementById("filePassInput").value;
+
+  if (!input) {
+    document.getElementById("filePassMsg").textContent = "ACCESS DENIED";
+    return;
+  }
+
+  const cleanInput = input.trim().toUpperCase();
+  const correct = filePasswords[currentFile].password.toUpperCase();
+
+  if (cleanInput === correct) {
+    openPage(currentFile, filePasswords[currentFile].path);
+  } else {
+    document.getElementById("filePassMsg").textContent = "ACCESS DENIED";
+  }
 }
 </script>
 
