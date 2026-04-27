@@ -1,133 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Halden Research Archive</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Halden Research Archive</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      background: #0a0d0f;
-      color: #c9d6d2;
-      font-family: "Courier New", monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<style>
+body {
+  margin: 0;
+  background: #0a0d0f;
+  color: #c9d6d2;
+  font-family: "Courier New", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-    .container {
-      width: 850px;
-      background: #111719;
-      border: 1px solid #2c3a3f;
-      padding: 30px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.7);
-    }
+.container {
+  width: 900px;
+  background: #111719;
+  border: 1px solid #2c3a3f;
+  padding: 30px;
+}
 
-    h1 {
-      color: #8fb6a3;
-      letter-spacing: 3px;
-      margin-bottom: 5px;
-    }
+h1 { color: #8fb6a3; letter-spacing: 3px; }
+h2 { color: #8fb6a3; border-bottom: 1px solid #2c3a3f; }
 
-    .subtitle {
-      color: #6f8380;
-      margin-bottom: 25px;
-      font-size: 14px;
-    }
+.subtitle { color: #6f8380; margin-bottom: 20px; }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      background: #050606;
-      border: 1px solid #3b4a4f;
-      color: white;
-      font-family: inherit;
-    }
+input {
+  width: 100%;
+  padding: 10px;
+  background: #050606;
+  border: 1px solid #3b4a4f;
+  color: white;
+}
 
-    button {
-      margin-top: 12px;
-      padding: 10px 16px;
-      background: #162024;
-      border: 1px solid #3b4a4f;
-      color: white;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background: #162024;
+  border: 1px solid #3b4a4f;
+  color: white;
+  cursor: pointer;
+}
 
-    button:hover {
-      color: #8fb6a3;
-      border-color: #8fb6a3;
-    }
+.hidden { display: none; }
 
-    .hidden {
-      display: none;
-    }
+.folder, .file {
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #2c3a3f;
+  cursor: pointer;
+}
 
-    .folder {
-      margin-top: 12px;
-      padding: 10px;
-      border-bottom: 1px solid #2c3a3f;
-    }
+.folder:hover, .file:hover {
+  border-color: #8fb6a3;
+  color: #8fb6a3;
+}
 
-    .green {
-      color: #8fb6a3;
-    }
+.folder::before { content: "[DIR] "; color: #8fb6a3; }
+.file::before { content: "[FILE] "; color: #6f8380; }
 
-    .red {
-      color: #9e3f3f;
-    }
-  </style>
+.green { color: #8fb6a3; }
+.red { color: #9e3f3f; }
+
+.log {
+  background: #070909;
+  padding: 15px;
+  margin-top: 15px;
+  white-space: pre-wrap;
+}
+
+.path { color: #6f8380; margin-bottom: 10px; }
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-  <h1>HALDEN ARCHIVE</h1>
-  <div class="subtitle">Restricted access // activity monitored</div>
+<h1>HALDEN ARCHIVE</h1>
+<div class="subtitle">Restricted access // activity monitored</div>
 
-  <div id="login">
-    <input type="password" id="password" placeholder="ENTER ACCESS KEY">
-    <button onclick="checkPassword()">Authenticate</button>
-    <p id="message" class="red"></p>
-  </div>
+<div id="login">
+<input type="password" id="password" placeholder="ENTER ACCESS KEY">
+<button onclick="checkPassword()">Authenticate</button>
+<p id="message" class="red"></p>
+</div>
 
-  <div id="archive" class="hidden">
-    <p class="green">ACCESS GRANTED</p>
+<div id="archive" class="hidden">
 
-    <div class="folder">/SUBJECTS/</div>
-    <div class="folder">/AURI/ — neurological + perceptual studies</div>
-    <div class="folder">/S-17/ — supplementary asset</div>
-    <div class="folder">/JC-653/ — cognitive control</div>
-    <div class="folder red">/[REDACTED]/ — requires clearance</div>
-  </div>
+<p class="green">ACCESS GRANTED</p>
+<p class="path" id="path">/ROOT/</p>
+
+<!-- ROOT -->
+<div id="root" class="page">
+<h2>ROOT</h2>
+<div class="folder" onclick="openPage('subjects','/ROOT/SUBJECTS/')">SUBJECTS</div>
+<div class="folder" onclick="openPage('logs','/ROOT/LOGS/')">ARCHIVE_LOGS</div>
+<div class="folder red" onclick="openPage('redacted','/ROOT/[REDACTED]/')">[REDACTED]</div>
+</div>
+
+<!-- SUBJECTS -->
+<div id="subjects" class="page hidden">
+<button onclick="openPage('root','/ROOT/')">Back</button>
+<h2>SUBJECTS</h2>
+<div class="folder" onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">AURI</div>
+<div class="folder" onclick="openPage('s17','/ROOT/SUBJECTS/S-17/')">S-17</div>
+</div>
+
+<!-- AURI -->
+<div id="auri" class="page hidden">
+<button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
+<h2>AURI</h2>
+<div class="file" onclick="openPage('intake','/AURI/INTAKE.txt')">INTAKE.txt</div>
+<div class="file" onclick="openPage('blood','/AURI/BLOOD.txt')">EXP_34_BLOOD.txt</div>
+<div class="file red" onclick="openPage('corrupt','/AURI/DO_NOT_REPEAT.txt')">DO_NOT_REPEAT.txt</div>
+</div>
+
+<div id="intake" class="page hidden">
+<button onclick="openPage('auri','/AURI/')">Back</button>
+<h2>INTAKE</h2>
+<div class="log">
+Subject recovered from Hawthorne incident.
+Child found alive. No trauma.
+Subject did not speak.
+Subject was listening.
+</div>
+</div>
+
+<div id="blood" class="page hidden">
+<button onclick="openPage('auri','/AURI/')">Back</button>
+<h2>EXP_34</h2>
+<div class="log">
+Blood reduction increased clarity.
+"It's easier to think."
+"It's quieter."
+</div>
+</div>
+
+<div id="corrupt" class="page hidden">
+<button onclick="openPage('auri','/AURI/')">Back</button>
+<h2>DO_NOT_REPEAT</h2>
+<div class="log red">
+...it learned her name...
+...Sophia saw it move...
+DO NOT REPEAT
+</div>
+</div>
+
+<!-- S17 -->
+<div id="s17" class="page hidden">
+<button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
+<h2>S-17</h2>
+<div class="log">
+Supplementary asset.
+Cross-referenced with AURI.
+Restricted interaction.
+</div>
+</div>
+
+<!-- LOGS -->
+<div id="logs" class="page hidden">
+<button onclick="openPage('root','/ROOT/')">Back</button>
+<h2>LOGS</h2>
+<div class="file" onclick="openPage('hawthorne','/LOGS/HAWTHORNE.txt')">1996_HAWTHORNE.txt</div>
+</div>
+
+<div id="hawthorne" class="page hidden">
+<button onclick="openPage('logs','/LOGS/')">Back</button>
+<h2>HAWTHORNE CASE</h2>
+<div class="log">
+Two adults deceased.
+Child alive.
+No cause determined.
+She did not react.
+She listened.
+</div>
+</div>
+
+<!-- REDACTED -->
+<div id="redacted" class="page hidden">
+<button onclick="openPage('root','/ROOT/')">Back</button>
+<h2>[REDACTED]</h2>
+<input type="password" id="secondPass" placeholder="SECOND KEY">
+<button onclick="checkSecond()">Submit</button>
+<p id="secondMsg" class="red"></p>
+</div>
+
+<div id="deep" class="page hidden">
+<button onclick="openPage('redacted','/ROOT/[REDACTED]/')">Back</button>
+<h2>THE_ROOM_WAS_NOT_EMPTY</h2>
+<div class="log red">
+Auri was not first.
+She was first to survive.
+It remembers her.
+</div>
+</div>
+
+</div>
 
 </div>
 
 <script>
-  const correctPassword = "HAWTHORNE1996";
+const password = "HAWTHORNE1996";
+const second = "LISTENEDBACK";
 
-  function checkPassword() {
-    const input = document.getElementById("password").value;
-    const message = document.getElementById("message");
-
-    if (input === correctPassword) {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("archive").classList.remove("hidden");
-    } else {
-      message.textContent = "ACCESS DENIED";
-    }
+function checkPassword(){
+  if(document.getElementById("password").value === password){
+    document.getElementById("login").style.display="none";
+    document.getElementById("archive").classList.remove("hidden");
+  } else {
+    document.getElementById("message").textContent="ACCESS DENIED";
   }
+}
 
-  document.getElementById("password").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-      checkPassword();
-    }
-  });
+function checkSecond(){
+  if(document.getElementById("secondPass").value === second){
+    openPage('deep','/ROOT/[REDACTED]/FILE');
+  } else {
+    document.getElementById("secondMsg").textContent="DENIED";
+  }
+}
+
+function openPage(id, path){
+  document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+  document.getElementById("path").textContent = path;
+}
 </script>
 
 </body>
