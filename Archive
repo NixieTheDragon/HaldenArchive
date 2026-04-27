@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Halden Research Archive</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0a0d0f;
+      color: #c9d6d2;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 800px;
+      background: #111719;
+      border: 1px solid #2c3a3f;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #8fb6a3;
+      letter-spacing: 2px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background: #050606;
+      border: 1px solid #3b4a4f;
+      color: white;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #162024;
+      border: 1px solid #3b4a4f;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      color: #8fb6a3;
+      border-color: #8fb6a3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .folder {
+      margin-top: 15px;
+      padding: 10px;
+      border-bottom: 1px solid #2c3a3f;
+    }
+
+    .green {
+      color: #8fb6a3;
+    }
+
+    .red {
+      color: #9e3f3f;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>HALDEN ARCHIVE</h1>
+  <p>Restricted access. Activity monitored.</p>
+
+  <div id="login">
+    <input type="password" id="password" placeholder="ENTER ACCESS KEY">
+    <button onclick="checkPassword()">Authenticate</button>
+    <p id="message" class="red"></p>
+  </div>
+
+  <div id="archive" class="hidden">
+    <p class="green">ACCESS GRANTED</p>
+
+    <div class="folder">/SUBJECTS/</div>
+    <div class="folder">/AURI/ - neurological + perceptual studies</div>
+    <div class="folder">/S-17/ - supplementary asset</div>
+    <div class="folder">/JC-653/ - cognitive control</div>
+    <div class="folder red">/[REDACTED]/ - requires clearance</div>
+  </div>
+
+</div>
+
+<script>
+  const correctPassword = "HAWTHORNE1996";
+
+  function checkPassword() {
+    const input = document.getElementById("password").value;
+    const message = document.getElementById("message");
+
+    if (input === correctPassword) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("archive").classList.remove("hidden");
+    } else {
+      message.textContent = "ACCESS DENIED";
+    }
+  }
+</script>
+
+</body>
+</html>
