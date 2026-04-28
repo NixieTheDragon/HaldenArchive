@@ -93,10 +93,14 @@ button {
 }
 
 .redacted {
-  background: #9e3f3f;
-  color: transparent;
+  background: #0b0b0b;
+  color: #0b0b0b; /* same as background */
   padding: 2px 6px;
-  letter-spacing: 2px;
+  border-radius: 2px;
+
+  user-select: none;          /* prevents highlighting */
+  -webkit-user-select: none;  /* Safari/Chrome */
+  -moz-user-select: none;     /* Firefox */
 }
 
 .corrupt {
