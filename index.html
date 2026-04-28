@@ -359,7 +359,7 @@ button {
 
 <div class="folder" onclick="openPage('background','/ROOT/SUBJECTS/AURI/BACKGROUND/')">BACKGROUND</div>
 <div class="folder" onclick="openPage('experiments','/ROOT/SUBJECTS/AURI/EXPERIMENTS/')">EXPERIMENTS</div>
-<div class="folder" onclick="openPage('current_log','/ROOT/SUBJECTS/AURI/CURRENT_LOG/')">CURRENT_LOG</div>
+<div class="folder" onclick="openPage('current_log','/ROOT/SUBJECTS/AURI/CURRENT_LOG/')">CURRENT_LOGS</div>
 </div>
 
 <div id="background" class="page hidden">
@@ -375,9 +375,10 @@ button {
 
 <div id="current_log" class="page hidden">
 <button onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">Back</button>
-<h2>CURRENT_LOG</h2>
+<h2>CURRENT_LOGS</h2>
 
 <div class="file" onclick="openPasswordBox('current_log_file')">CURRENT_LOG.txt</div>
+<div class="file" onclick="openPasswordBox('current_log2')">PERSONAL_NOTE.txt</div>
 </div>
 
 <div id="current_log_file" class="page hidden">
@@ -561,6 +562,70 @@ If transformation remains possible, it will not occur within a closed system.
 
 April will provide sufficient environmental complexity to determine this.
 
+--------------------------------------------------
+
+END ENTRY
+
+</div>
+</div>
+
+<div id="current_log" class="page hidden">
+<button onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">Back</button>
+<h2>CURRENT_LOG</h2>
+
+<div class="file" onclick="openPasswordBox('current_log_file')">CURRENT_LOG.txt</div>
+</div>
+
+<div id="current_log2" class="page hidden">
+<button onclick="openPage('current_log2','/ROOT/SUBJECTS/AURI/CURRENT_LOG/')">Back</button>
+<h2>PERSONAL_NOTE.txt</h2>
+
+<div class="log">
+PERSONAL NOTE (RESTRICTED)
+
+The current condition has stabilized.
+
+All recent trials have produced consistent results. Environmental variation, physiological stress, and removal of baseline stabilization variables have not produced meaningful deviation. The subject remains in a continuous perceptual state with limited fluctuation in response patterns.
+
+There is no progression.
+
+There is no regression.
+
+There is only persistence.
+
+The previous incident demonstrated that the system is capable of transition under sufficient conditions. The collapse event produced a structural change in both behavioral presentation and cognitive function. That shift, while initially classified as failure, represented the only instance of measurable alteration beyond baseline parameters.
+
+It introduced variation.
+
+Current methodology does not.
+
+The subject has adapted to the present conditions. Not in a way that reduces input, but in a way that allows continued function within it. This adaptation appears to have reached a stable limit.
+
+Further application of existing variables is unlikely to produce additional change.
+
+The system is no longer responsive to escalation of intensity.
+
+It requires expansion.
+
+The environment in which the subject has been maintained is controlled, repeatable, and finite. All variables are known. All patterns are established. There is no capacity for emergent complexity within the current structure.
+
+If the subject’s perceptual model is dependent on accumulation, interaction, and pattern density, then a closed system will inevitably reach saturation without variation.
+
+This has occurred.
+
+A larger environment introduces uncontrolled variables. Increased object diversity, human presence, and unpredictable interaction patterns may produce conditions not replicable within the current facility.
+
+The subject has not been exposed to such conditions since initial acquisition.
+
+This limitation is no longer useful.
+
+A transition is required.
+
+Preparation for relocation will begin.
+
+The objective is not exposure to greater intensity, but exposure to greater complexity.
+
+If further transformation is possible, it will not occur here.
 --------------------------------------------------
 
 END ENTRY
@@ -2130,6 +2195,11 @@ const filePasswords = {
   password: "AURI",
   page: "current_log_file",
   path: "/AURI/CURRENT_LOG/CURRENT_LOG.txt"
+},
+  current_log2: {
+  password: "AURI",
+  page: "current_log2",
+  path: "/AURI/CURRENT_LOG/PERSONAL_NOTE.txt"
 },
   newspaper: {
     password: "AURI",
