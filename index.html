@@ -321,15 +321,24 @@ button {
 <div id="auri" class="page hidden">
 <button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
 <h2>AURI</h2>
+
+<div class="folder" onclick="openPasswordBox('background')">BACKGROUND</div>
+<div class="folder" onclick="openPasswordBox('experiments')">EXPERIMENTS</div>
+</div>
+
+<div id="background" class="page hidden">
+<button onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">Back</button>
+<h2>BACKGROUND</h2>
+
 <div class="file" onclick="openPasswordBox('newspaper')">NEWSPAPER.txt</div>
 <div class="file" onclick="openPasswordBox('intake')">INTAKE.txt</div>
 <div class="file" onclick="openPasswordBox('ENT')">ENT.txt</div>
 <div class="file" onclick="openPasswordBox('psych')">PSYCH_EVAL.txt</div>
 <div class="file" onclick="openPasswordBox('EEG')">EEG.txt</div>
-<div class="folder" onclick="openPasswordBox('experiments')">EXPERIMENTS</div></div>
+</div>
 
 <div id="newspaper" class="page hidden">
-<button onclick="openPage('auri','/AURI/')">Back</button>
+<button onclick="openPage('background','/ROOT/SUBJECTS/AURI/BACKGROUND/')">Back</button>
 <h2>NEWSPAPER</h2>
 
 <div class="newspaper-wrapper">
@@ -387,7 +396,7 @@ button {
 </div>
 
 <div id="intake" class="page hidden">
-<button onclick="openPage('auri','/AURI/')">Back</button>
+<button onclick="openPage('background','/ROOT/SUBJECTS/AURI/BACKGROUND/')">Back</button>
 <h2>INTAKE</h2>
 <div class="log">
 ST. MARY’S GENERAL HOSPITAL
@@ -554,7 +563,7 @@ Harold M. Kessler, MD
 </div>
 
 <div id="psych" class="page hidden">
-<button onclick="openPage('auri','/AURI/')">Back</button>
+<button onclick="openPage('background','/ROOT/SUBJECTS/AURI/BACKGROUND/')">Back</button>
 <h2>PSYCH_EVAL</h2>
 <div class="log">
 ST. MARY’S GENERAL HOSPITAL
@@ -735,7 +744,7 @@ Child Psychiatry
 </div>
 
 <div id="ENT" class="page hidden">
-<button onclick="openPage('auri','/AURI/')">Back</button>
+<button onclick="openPage('background','/ROOT/SUBJECTS/AURI/BACKGROUND/')">Back</button>
 <h2>ENT / NEUROLOGICAL REPORT</h2>
 <div class="log">
 <h3>ENT / NEUROLOGICAL REPORT</h3>
@@ -901,7 +910,7 @@ Neurology
 </div>
 
 <div id="EEG" class="page hidden">
-<button onclick="openPage('auri','/AURI/')">Back</button>
+<button onclick="openPage('background','/ROOT/SUBJECTS/AURI/BACKGROUND/')">Back</button>
 <h2>EEG</h2>
 <div class="log">
 <h3>EEG REPORT</h3>
@@ -1069,8 +1078,6 @@ Neurology
 <div class="file" onclick="openPasswordBox('exp3')">EXPERIMENT_03.txt</div>
 </div>
 
-</div>
-
 <div id="exp1" class="page hidden">
 <button onclick="openPage('experiments','/ROOT/SUBJECTS/AURI/EXPERIMENTS/')">Back</button>
 <h2>EXPERIMENT 01</h2>
@@ -1211,52 +1218,56 @@ function openPage(id, path){
 
   /* Auri Files Passwords */
 const filePasswords = {
+  background: {
+    password: "AURI",
+    page: "background",
+    path: "/AURI/BACKGROUND/"
+  },
   newspaper: {
     password: "AURI",
     page: "newspaper",
-    path: "/AURI/NEWSPAPER.txt"
+    path: "/AURI/BACKGROUND/NEWSPAPER.txt"
   },
   intake: {
     password: "AURI",
     page: "intake",
-    path: "/AURI/INTAKE.txt"
+    path: "/AURI/BACKGROUND/INTAKE.txt"
   },
   ENT: {
     password: "AURI",
     page: "ENT",
-    path: "/AURI/ENT.txt"
+    path: "/AURI/BACKGROUND/ENT.txt"
   },
   psych: {
     password: "AURI",
     page: "psych",
-    path: "/AURI/PSYCH_EVAL.txt"
+    path: "/AURI/BACKGROUND/PSYCH_EVAL.txt"
   },
   EEG: {
     password: "AURI",
     page: "EEG",
-    path: "/AURI/EEG.txt"
+    path: "/AURI/BACKGROUND/EEG.txt"
   },
   experiments: {
-  password: "AURI",
-  page: "experiments",
-  path: "/AURI/EXPERIMENTS/"
-},
-exp1: {
-  password: "AURI",
-  page: "exp1",
-  path: "/AURI/EXPERIMENTS/EXP_01.txt"
-},
-exp2: {
-  password: "AURI",
-  page: "exp2",
-  path: "/AURI/EXPERIMENTS/EXP_02.txt"
-},
-exp3: {
-  password: "AURI",
-  page: "exp3",
-  path: "/AURI/EXPERIMENTS/EXP_03.txt"
-}
-  
+    password: "AURI",
+    page: "experiments",
+    path: "/AURI/EXPERIMENTS/"
+  },
+  exp1: {
+    password: "AURI",
+    page: "exp1",
+    path: "/AURI/EXPERIMENTS/EXP_01.txt"
+  },
+  exp2: {
+    password: "AURI",
+    page: "exp2",
+    path: "/AURI/EXPERIMENTS/EXP_02.txt"
+  },
+  exp3: {
+    password: "AURI",
+    page: "exp3",
+    path: "/AURI/EXPERIMENTS/EXP_03.txt"
+  }
 };
 
 function openPasswordBox(fileId) {
@@ -1270,8 +1281,13 @@ function openPasswordBox(fileId) {
 }
 
 function submitFilePassword() {
+  if (!currentFile || !filePasswords[currentFile]) {
+    document.getElementById("filePassMsg").textContent = "ACCESS ERROR";
+    return;
+  }
+
   const input = document.getElementById("filePassInput").value.trim().toUpperCase();
-  const correct = filePasswords[currentFile].password;
+  const correct = filePasswords[currentFile].password.trim().toUpperCase();
 
   if (input === correct) {
     openPage(
@@ -1282,6 +1298,13 @@ function submitFilePassword() {
     document.getElementById("filePassMsg").textContent = "ACCESS DENIED";
   }
 }
+
+document.getElementById("filePassInput").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    submitFilePassword();
+  }
+});
+
 </script>
 
 </body>
