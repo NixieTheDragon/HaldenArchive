@@ -154,13 +154,24 @@ button {
 }
 
 .newspaper-body {
+  background: #f2ead8; /* same as header */
+  color: #1b1b1b;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 16px;
   line-height: 1.55;
+
   column-count: 2;
   column-gap: 28px;
-  text-align: justify;
+
+  padding: 20px;
+  border: 2px solid #1b1b1b;
+  border-top: none; /* removes double border between header + body */
 }
+
+.text-small { font-size: 12px; }
+.text-normal { font-size: 16px; }
+.text-large { font-size: 24px; }
+.text-xl { font-size: 36px; }
 </style>
 </head>
 
@@ -228,7 +239,7 @@ button {
 </div>
 
 <div class="newspaper-body">
-  <p>YHAWTHORNE, WI — Authorities are continuing to investigate the deaths of a local couple following what officials have described as an “unusual and isolated incident” inside their home late Tuesday evening.
+  <p><p class="text-large">HAWTHORNE, WI</p>— Authorities are continuing to investigate the deaths of a local couple following what officials have described as an “unusual and isolated incident” inside their home late Tuesday evening.
 Emergency responders were called to a residence on Alder Street shortly after 9:40 PM, after a neighbor reported hearing “something wrong” and noticing the front door standing partially open.
 Inside, responders discovered two adults—identified as Daniel and Marissa Henderson—unresponsive. Both were pronounced dead at the scene.
 A young child, believed to be their daughter, was also found inside the home. Officials say the child, estimated to be approximately four years old, did not appear to have sustained any physical injuries and was transported to St. Jude’s Medical Center for observation. She is currently listed in stable condition.
@@ -259,7 +270,7 @@ The child is currently in protective care while arrangements are made for long-t
 
 Anyone with information is encouraged to contact the Hawthorne Police Department at (555) 013-4421.
 
-© 1996 The Hawthorne Ledger. All rights reserved.
+<p class="text-small">© 1996 The Hawthorne Ledger. All rights reserved.</p>
 </p>
 
 </div>
