@@ -326,7 +326,7 @@ button {
 <div class="file" onclick="openPasswordBox('ENT')">ENT.txt</div>
 <div class="file" onclick="openPasswordBox('psych')">PSYCH_EVAL.txt</div>
 <div class="file" onclick="openPasswordBox('EEG')">EEG.txt</div>
-</div>
+<div class="folder" onclick="openPasswordBox('experiments')">EXPERIMENTS</div></div>
 
 <div id="newspaper" class="page hidden">
 <button onclick="openPage('auri','/AURI/')">Back</button>
@@ -1059,7 +1059,15 @@ Dr. Steven P. Halvorsen, MD
 Neurology
 </div>
 </div>
+  
+<div id="experiments" class="page hidden">
+<button onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">Back</button>
+<h2>EXPERIMENTS</h2>
 
+<div class="file" onclick="openPasswordBox('exp1')">EXPERIMENT_01.txt</div>
+<div class="file" onclick="openPasswordBox('exp2')">EXPERIMENT_02.txt</div>
+<div class="file" onclick="openPasswordBox('exp3')">EXPERIMENT_03.txt</div>
+</div>
 
 </div>
 
@@ -1070,6 +1078,22 @@ Neurology
 Supplementary asset.
 Cross-referenced with AURI.
 Restricted interaction.
+</div>
+</div>
+
+  <div id="exp1" class="page hidden">
+<button onclick="openPage('experiments','/ROOT/SUBJECTS/AURI/EXPERIMENTS/')">Back</button>
+<h2>EXPERIMENT 01</h2>
+
+<div class="log">
+EXPERIMENT 01  
+OBJECTIVE: Initial auditory response testing  
+
+Subject exposed to silent room conditions.  
+
+Result:  
+Subject reported “still too loud.”  
+No external stimuli detected.  
 </div>
 </div>
 
@@ -1179,7 +1203,27 @@ const filePasswords = {
     password: "AURI",
     page: "EEG",
     path: "/AURI/EEG.txt"
-  }
+  },
+  experiments: {
+  password: "AURI",
+  page: "experiments",
+  path: "/AURI/EXPERIMENTS/"
+},
+exp1: {
+  password: "AURI",
+  page: "exp1",
+  path: "/AURI/EXPERIMENTS/EXP_01.txt"
+},
+exp2: {
+  password: "AURI",
+  page: "exp2",
+  path: "/AURI/EXPERIMENTS/EXP_02.txt"
+},
+exp3: {
+  password: "AURI",
+  page: "exp3",
+  path: "/AURI/EXPERIMENTS/EXP_03.txt"
+}
   
 };
 
