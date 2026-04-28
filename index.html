@@ -359,6 +359,7 @@ button {
 
 <div class="folder" onclick="openPage('background','/ROOT/SUBJECTS/AURI/BACKGROUND/')">BACKGROUND</div>
 <div class="folder" onclick="openPage('experiments','/ROOT/SUBJECTS/AURI/EXPERIMENTS/')">EXPERIMENTS</div>
+<div class="folder" onclick="openPage('logs','/ROOT/SUBJECTS/AURI/CURRENT_LOG/')">CURRENT_LOG</div>
 </div>
 
 <div id="background" class="page hidden">
@@ -370,6 +371,13 @@ button {
 <div class="file" onclick="openPasswordBox('ENT')">ENT.txt</div>
 <div class="file" onclick="openPasswordBox('psych')">PSYCH_EVAL.txt</div>
 <div class="file" onclick="openPasswordBox('EEG')">EEG.txt</div>
+</div>
+
+<div id="logs" class="page hidden">
+<button onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">Back</button>
+<h2>LOGS</h2>
+
+<div class="file" onclick="openPasswordBox('Current Log - April 2026')">CURRENT_LOG.txt</div>
 </div>
 
 <div id="newspaper" class="page hidden">
@@ -1929,6 +1937,11 @@ const filePasswords = {
     password: "AURI",
     page: "background",
     path: "/AURI/BACKGROUND/"
+  },
+  logs: {
+    password: "AURI",
+    page: "logs",
+    path: "/AURI/CURRENT_LOG/"
   },
   newspaper: {
     password: "AURI",
