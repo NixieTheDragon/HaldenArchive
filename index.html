@@ -375,9 +375,18 @@ button {
 
 <div id="current_log" class="page hidden">
 <button onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">Back</button>
-<h2>LOGS</h2>
+<h2>CURRENT_LOG</h2>
 
-<div class="file" onclick="openPasswordBox('current_log')">CURRENT_LOG.txt</div>
+<div class="file" onclick="openPasswordBox('current_log_file')">CURRENT_LOG.txt</div>
+</div>
+
+<div id="current_log_file" class="page hidden">
+<button onclick="openPage('current_log','/ROOT/SUBJECTS/AURI/CURRENT_LOG/')">Back</button>
+<h2>CURRENT_LOG.txt</h2>
+
+<div class="log">
+CURRENT LOG CONTENT GOES HERE.
+</div>
 </div>
 
 <div id="newspaper" class="page hidden">
@@ -1938,11 +1947,11 @@ const filePasswords = {
     page: "background",
     path: "/AURI/BACKGROUND/"
   },
-  current_log: {
-    password: "AURI",
-    page: "current_log",
-    path: "/AURI/CURRENT_LOG/"
-  },
+ current_log_file: {
+  password: "AURI",
+  page: "current_log_file",
+  path: "/AURI/CURRENT_LOG/CURRENT_LOG.txt"
+},
   newspaper: {
     password: "AURI",
     page: "newspaper",
