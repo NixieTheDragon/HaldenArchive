@@ -317,10 +317,10 @@ button {
 <div id="auri" class="page hidden">
 <button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
 <h2>AURI</h2>
-<div class="file" onclick="openPage('newspaper','/AURI/NEWSPAPER.txt')">NEWSPAPER.txt</div>
-<div class="file" onclick="openPage('intake','/AURI/INTAKE.txt')">INTAKE.txt</div>
-<div class="file" onclick="openPage('ENT','/AURI/ENT.txt')">ENT.txt</div>
-<div class="file" onclick="openPage('psych','/AURI/PSYCH_EVAL.txt')">PSYCH_EVAL.txt</div>
+<div class="file" onclick="openPasswordBox('newspaper')">NEWSPAPER.txt</div>
+<div class="file" onclick="openPasswordBox('intake')">INTAKE.txt</div>
+<div class="file" onclick="openPasswordBox('ENT')">ENT.txt</div>
+<div class="file" onclick="openPasswordBox('psych')">PSYCH_EVAL.txt</div>
 </div>
 
 <div id="newspaper" class="page hidden">
@@ -936,6 +936,16 @@ It remembers her.
 </div>
 </div>
 
+  <div id="filePasswordBox" class="page hidden">
+  <button onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">Back</button>
+  <h2>FILE ACCESS REQUIRED</h2>
+
+  <input type="password" id="filePassInput" placeholder="ENTER FILE KEY">
+  <button onclick="submitFilePassword()">Submit</button>
+
+  <p id="filePassMsg" class="red"></p>
+</div>
+
 </div>
 </div>
 
@@ -964,6 +974,55 @@ function openPage(id, path){
   document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
   document.getElementById("path").textContent = path;
+}
+
+  let currentFile = null;
+
+const filePasswords = {
+  newspaper: {
+    password: "LEDGER",
+    page: "newspaper",
+    path: "/AURI/NEWSPAPER.txt"
+  },
+  intake: {
+    password: "ELIZABETH",
+    page: "intake",
+    path: "/AURI/INTAKE.txt"
+  },
+  ENT: {
+    password: "TOOLOUD",
+    page: "ENT",
+    path: "/AURI/ENT.txt"
+  },
+  psych: {
+    password: "THEYDONTSTOP",
+    page: "psych",
+    path: "/AURI/PSYCH_EVAL.txt"
+  }
+};
+
+function openPasswordBox(fileId) {
+  currentFile = fileId;
+
+  document.getElementById("filePassInput").value = "";
+  document.getElementById("filePassMsg").textContent = "";
+
+  document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+  document.getElementById("filePasswordBox").classList.remove("hidden");
+}
+
+function submitFilePassword() {
+  const input = document.getElementById("filePassInput").value.trim().toUpperCase();
+  const correct = filePasswords[currentFile].password;
+
+  if (input === correct) {
+    openPage(
+      filePasswords[currentFile].page,
+      filePasswords[currentFile].path
+    );
+  } else {
+    document.getElementById("filePassMsg").textContent = "ACCESS DENIED";
+  }
 }
 </script>
 
