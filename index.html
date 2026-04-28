@@ -104,14 +104,34 @@ button {
   letter-spacing: 3px;
 }
 
-.newspaper-header {
+.text-small { font-size: 12px; }
+.text-normal { font-size: 16px; }
+.text-large { font-size: 24px; }
+.text-xl { font-size: 36px; }
+
+.section-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* NEWSPAPER STYLE */
+.newspaper-wrapper {
   background: #f2ead8;
   color: #1b1b1b;
   border: 2px solid #1b1b1b;
-  padding: 24px;
+  font-family: Georgia, "Times New Roman", serif;
+  white-space: normal;
+}
+
+.newspaper-header {
+  background: #f2ead8;
+  color: #1b1b1b;
+  padding: 24px 24px 16px 24px;
   text-align: center;
   font-family: Georgia, "Times New Roman", serif;
-  padding-bottom: 16px;
+  border: none;
+  margin: 0;
 }
 
 .newspaper-title {
@@ -133,6 +153,8 @@ button {
 .newspaper-meta {
   display: flex;
   justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
   border-top: 1px solid #1b1b1b;
   border-bottom: 1px solid #1b1b1b;
   padding: 6px 0;
@@ -146,57 +168,32 @@ button {
   line-height: 1.1;
   margin: 24px 0 10px;
   text-transform: uppercase;
+  color: #1b1b1b;
+  border-bottom: none;
 }
 
 .newspaper-byline {
   font-size: 13px;
   font-style: italic;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .newspaper-body {
-  background: #f2ead8; /* same as header */
+  background: #f2ead8;
   color: #1b1b1b;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 12px;
   line-height: 1.55;
-
   column-count: 2;
   column-gap: 28px;
-
-  padding: 20px;
-  border: 2px solid #1b1b1b;
-  border-top: none; /* removes double border between header + body */
-  padding-top: 16px;
-}
-
-.newspaper-header,
-.newspaper-body {
+  padding: 16px 20px 20px 20px;
+  border: none;
   margin: 0;
+  white-space: normal;
 }
 
-.newspaper-header h1,
-.newspaper-header h2,
-.newspaper-header p {
-  margin: 0;
-}
 .newspaper-body p {
   margin: 0 0 10px 0;
-}
-  
-.newspaper-body p:first-child {
-  margin-top: 0;
-}
-
-.text-small { font-size: 12px; }
-.text-normal { font-size: 16px; }
-.text-large { font-size: 24px; }
-.text-xl { font-size: 36px; }
-
-.section-title {
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 </style>
 </head>
@@ -219,7 +216,6 @@ button {
 <p class="green">ACCESS GRANTED</p>
 <p class="path" id="path">/ROOT/</p>
 
-<!-- ROOT -->
 <div id="root" class="page">
 <h2>ROOT</h2>
 <div class="folder" onclick="openPage('subjects','/ROOT/SUBJECTS/')">SUBJECTS</div>
@@ -227,7 +223,6 @@ button {
 <div class="folder red" onclick="openPage('redacted','/ROOT/[REDACTED]/')">[REDACTED]</div>
 </div>
 
-<!-- SUBJECTS -->
 <div id="subjects" class="page hidden">
 <button onclick="openPage('root','/ROOT/')">Back</button>
 <h2>SUBJECTS</h2>
@@ -235,7 +230,6 @@ button {
 <div class="folder" onclick="openPage('s17','/ROOT/SUBJECTS/S-17/')">S-17</div>
 </div>
 
-<!-- AURI -->
 <div id="auri" class="page hidden">
 <button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
 <h2>AURI</h2>
@@ -248,50 +242,55 @@ button {
 <div id="newspaper" class="page hidden">
 <button onclick="openPage('auri','/AURI/')">Back</button>
 <h2>NEWSPAPER</h2>
-<div class="log">
-<div class="newspaper-header">
-  <h1 class="newspaper-title">The Hawthorne Ledger</h1>
-  <div class="newspaper-subtitle">Serving Hawthorne County Since 1891</div>
 
-  <div class="newspaper-meta">
-    <span>March 18, 1996</span>
-    <span>Hawthorne, Wisconsin</span>
-    <span>Vol. 104, No. 16</span>
-    <span>Updated March 19, 1996, 8:12 AM</span>
+<div class="newspaper-wrapper">
+  <div class="newspaper-header">
+    <h1 class="newspaper-title">The Hawthorne Ledger</h1>
+    <div class="newspaper-subtitle">Serving Hawthorne County Since 1891</div>
+
+    <div class="newspaper-meta">
+      <span>March 18, 1996</span>
+      <span>Hawthorne, Wisconsin</span>
+      <span>Vol. 104, No. 16</span>
+      <span>Updated March 19, 1996, 8:12 AM</span>
+    </div>
+
+    <h2 class="newspaper-headline">Couple Found Dead in Unexplained Residential Incident — Child Survives</h2>
+    <div class="newspaper-byline">By L. Carter, Staff Writer</div>
   </div>
 
-  <h2 class="newspaper-headline">Couple Found Dead in Unexplained Residential Incident — Child Survives</h2>
-  <div class="newspaper-byline">By L. Carter, Staff Writer</div>
+  <div class="newspaper-body">
+    <p><span class="section-title">HAWTHORNE, WI —</span> Authorities are continuing to investigate the deaths of a local couple following what officials have described as an “unusual and isolated incident” inside their home late Tuesday evening.</p>
+
+    <p>Emergency responders were called to a residence on Alder Street shortly after 9:40 PM, after a neighbor reported hearing “something wrong” and noticing the front door standing partially open.</p>
+
+    <p>Inside, responders discovered two adults—identified as Daniel and Marissa Henderson—unresponsive. Both were pronounced dead at the scene.</p>
+
+    <p>A young child, believed to be their daughter, was also found inside the home. Officials say the child, estimated to be approximately four years old, did not appear to have sustained any physical injuries and was transported to St. Jude’s Medical Center for observation. She is currently listed in stable condition.</p>
+
+    <p><span class="section-title">Cause of Death Remains Undetermined —</span> Investigators have not yet released an official cause of death. Initial speculation pointed to a possible gas leak or environmental exposure; however, authorities later stated that no clear evidence of carbon monoxide, natural gas buildup, or structural failure has been identified.</p>
+
+    <p>“There are no immediate indicators of foul play or hazardous materials,” said Deputy Coroner Elias Grant. “We are treating this as an isolated event while we continue to evaluate all possible causes.” Officials emphasized that there is no known threat to the public at this time.</p>
+
+    <p><span class="section-title">Responders Describe “Unusual” Scene —</span> While law enforcement has declined to elaborate on specific details, multiple sources close to the investigation described the interior of the home as “unsettling.”</p>
+
+    <p>One responder, speaking on condition of anonymity, said that “nothing looked disturbed, but something felt… off.” Another noted that certain objects within the home appeared “out of place,” though no signs of forced entry or struggle were found.</p>
+
+    <p><span class="section-title">Child’s Condition Raises Questions —</span> Hospital staff have declined to comment in detail on the child’s condition, citing privacy concerns, but confirmed she is physically unharmed.</p>
+
+    <p>A source familiar with her intake described her as “alert, but distant,” noting an unusual lack of emotional response given the circumstances. “She doesn’t seem distressed in the way you’d expect,” the source said. “She’s very quiet.”</p>
+
+    <p>When asked whether the child had spoken since arrival, the source added: “Only briefly. It wasn’t anything we could really make sense of.”</p>
+
+    <p><span class="section-title">Investigation Ongoing —</span> Authorities continue to examine the home and surrounding area as part of an ongoing investigation. Officials have reiterated that there is no indication the incident extends beyond the single residence.</p>
+
+    <p>The child is currently in protective care while arrangements are made for long-term placement.</p>
+
+    <p>Anyone with information is encouraged to contact the Hawthorne Police Department at (555) 013-4421.</p>
+
+    <p class="text-small"><i>© 1996 The Hawthorne Ledger. All rights reserved.</i></p>
+  </div>
 </div>
-
-<div class="newspaper-body">
-<div class="newspaper-body">
-
-<p>
-  <span class="section-title">HAWTHORNE, WI —</span>
- Authorities are continuing to investigate the deaths of a local couple following what officials have described as an “unusual and isolated incident” inside their home late Tuesday evening.
-Emergency responders were called to a residence on Alder Street shortly after 9:40 PM, after a neighbor reported hearing “something wrong” and noticing the front door standing partially open.
-Inside, responders discovered two adults — identified as Daniel and Marissa Henderson — unresponsive. Both were pronounced dead at the scene.
-A young child, believed to be their daughter, was also found inside the home. Officials say the child, estimated to be approximately four years old, did not appear to have sustained any physical injuries and was transported to St. Jude’s Medical Center for observation. She is currently listed in stable condition.
-
-</p>
-
-<p>
-  Emergency responders were called...
-</p>
-
-<p>
-  Inside, responders discovered...
-</p>
-
-<!-- etc -->
-
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 <div id="intake" class="page hidden">
@@ -348,9 +347,7 @@ Patient awake on arrival. No acute distress noted.
 
 General Appearance: Calm, passive, cooperative with physical guidance
 Level of Consciousness: Alert
-Eye Co
-
-ntact: Fixed gaze, prolonged staring episodes
+Eye Contact: Fixed gaze, prolonged staring episodes
 Speech: Nonverbal
 Response to Stimuli: Does not respond to verbal commands;
 intermittently tracks movement without clear stimulus
@@ -640,7 +637,6 @@ Signature:
 
 Leonard H. Voss, MD
 Child Psychiatry
-
 </div>
 </div>
 
@@ -648,26 +644,23 @@ Child Psychiatry
 <button onclick="openPage('auri','/AURI/')">Back</button>
 <h2>DO_NOT_REPEAT</h2>
 <div class="log red">
-<div class="log">
-  <h3>EXPERIMENT 34</h3>
+<h3>EXPERIMENT 34</h3>
 
-  <p><strong>OBJECTIVE:</strong> Assess blood volume impact.</p>
+<p><strong>OBJECTIVE:</strong> Assess blood volume impact.</p>
 
-  <h3>OBSERVATION</h3>
-  <ul>
-    <li>Reduced overload</li>
-    <li>Improved cognition</li>
-  </ul>
+<h3>OBSERVATION</h3>
+<ul>
+  <li>Reduced overload</li>
+  <li>Improved cognition</li>
+</ul>
 
-  <h3>VERBAL RESPONSE</h3>
-  <p><em>"It's easier to think."</em></p>
+<h3>VERBAL RESPONSE</h3>
+<p><em>"It's easier to think."</em></p>
 
-  <p class="warning">This should not be possible.</p>
+<p>This should not be possible.</p>
 </div>
 </div>
-</div>
 
-<!-- S17 -->
 <div id="s17" class="page hidden">
 <button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
 <h2>S-17</h2>
@@ -678,7 +671,6 @@ Restricted interaction.
 </div>
 </div>
 
-<!-- LOGS -->
 <div id="logs" class="page hidden">
 <button onclick="openPage('root','/ROOT/')">Back</button>
 <h2>LOGS</h2>
@@ -697,7 +689,6 @@ She listened.
 </div>
 </div>
 
-<!-- REDACTED -->
 <div id="redacted" class="page hidden">
 <button onclick="openPage('root','/ROOT/')">Back</button>
 <h2>[REDACTED]</h2>
@@ -717,7 +708,6 @@ It remembers her.
 </div>
 
 </div>
-
 </div>
 
 <script>
