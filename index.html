@@ -325,6 +325,7 @@ button {
 <div class="file" onclick="openPasswordBox('intake')">INTAKE.txt</div>
 <div class="file" onclick="openPasswordBox('ENT')">ENT.txt</div>
 <div class="file" onclick="openPasswordBox('psych')">PSYCH_EVAL.txt</div>
+<div class="file" onclick="openPasswordBox('EEG')">EEG.txt</div>
 </div>
 
 <div id="newspaper" class="page hidden">
@@ -899,6 +900,169 @@ Neurology
 </div>
 </div>
 
+<div id="EEG" class="page hidden">
+<button onclick="openPage('auri','/AURI/')">Back</button>
+<h2>EEG</h2>
+<div class="log">
+<h3>EEG REPORT</h3>
+ST. MARY’S GENERAL HOSPITAL
+NEURODIAGNOSTIC LAB REPORT
+
+DATE: March 15–16, 1996
+TEST: Extended EEG Monitoring (12-hour study)
+ATTENDING NEUROLOGIST: Dr. Steven P. Halvorsen, MD
+EEG TECHNICIAN: R. Patel
+
+Patient: <span class="redacted">REDACTED NAME</span>
+DOB: September 27, 1992
+AGE: 4 years, 5 months
+
+----------------------------------------
+REASON FOR STUDY
+----------------------------------------
+- Atypical preliminary EEG findings
+- Nonverbal presentation
+- Behavioral indications of response to non-observable stimuli
+
+----------------------------------------
+TEST CONDITIONS
+----------------------------------------
+- Patient placed in controlled, low-stimulation environment
+- Room maintained at minimal noise levels
+- Lighting kept consistent and soft
+- No television, music, or external auditory input present
+- Staff interaction minimized during recording period
+
+----------------------------------------
+BASELINE RECORDING (00:00–01:00)
+----------------------------------------
+Initial readings obtained during presumed resting state.
+
+Findings:
+- Elevated cortical activity across multiple regions
+- Activity levels exceed expected baseline for age and state
+- Patterns resemble active stimulus processing rather than rest
+
+Notably:
+- No corresponding external stimuli present
+
+----------------------------------------
+CONTINUOUS MONITORING OBSERVATIONS
+----------------------------------------
+
+01:12
+- Sudden spike in temporal lobe activity
+- Pattern consistent with auditory processing
+- No sound present in room
+- Patient physically still, eyes open
+
+01:47
+- Repeated bursts of activity across frontal and temporal regions
+- Pattern suggests rapid sequential stimulus recognition
+- No visual or auditory triggers identified
+
+02:03
+- Patient covers ears for approximately 6 seconds
+- Concurrent increase in amplitude across auditory processing regions
+
+02:05
+- Activity decreases slightly following physical response
+- Does not return to baseline
+
+02:42
+- Sustained high-frequency activity recorded
+- Comparable to heightened alertness or stress response
+- Patient remains motionless, no visible distress beyond fixed posture
+
+03:18
+- Irregular pattern resembling overlapping stimulus responses
+- Multiple regions activating simultaneously without identifiable sequence
+- Technician note: "No environmental cause. Equipment rechecked."
+
+----------------------------------------
+SLEEP ATTEMPT (04:10–05:00)
+----------------------------------------
+Lights dimmed to encourage rest.
+
+Findings:
+- Patient does not enter typical sleep stages
+- No progression into Stage I or II sleep observed
+- Brain activity remains elevated and reactive
+
+Notable:
+- Activity patterns continue to reflect stimulus processing despite absence of input
+- No REM cycle detected
+
+----------------------------------------
+RESPONSE PATTERN ANALYSIS
+----------------------------------------
+Throughout study, patient’s brain activity consistently demonstrates:
+
+- Continuous response patterns in auditory and associative regions
+- No identifiable external stimuli corresponding to recorded activity
+- Overlapping activation sequences inconsistent with known neurological disorders
+
+Important Distinction:
+- Activity does NOT follow predictive or anticipatory patterns
+- No evidence suggesting precognition or forward-processing capability
+
+Instead:
+- Brain appears to be responding in real-time to persistent, undefined input
+
+----------------------------------------
+TECHNICIAN NOTES
+----------------------------------------
+Multiple equipment checks performed throughout study period.
+
+- Leads verified
+- Signal interference ruled out
+- Secondary machine used for comparison at 02:55
+
+Results remained consistent across all verification attempts.
+
+Technician comment:
+"Patient’s readings behave as though exposed to continuous auditory input. No source identified."
+
+----------------------------------------
+CLINICAL IMPRESSION
+----------------------------------------
+- EEG demonstrates sustained, non-random cortical activation
+- Patterns strongly resemble ongoing sensory processing
+
+However:
+- No external stimuli present to account for activity
+- Findings do not align with seizure activity, hallucination patterns, or known pediatric conditions
+
+Interpretation:
+Patient appears neurologically engaged in continuous stimulus response without identifiable source.
+
+----------------------------------------
+ADDITIONAL OBSERVATION
+----------------------------------------
+At 03:26, attending nurse documented patient whispering:
+
+"too many"
+
+No further verbalization followed.
+
+----------------------------------------
+RECOMMENDATIONS
+----------------------------------------
+- Continued neurological monitoring
+- Further psychiatric evaluation
+- Consider transfer to specialized pediatric neurological facility
+
+----------------------------------------
+SIGNATURE:
+
+Dr. Steven P. Halvorsen, MD
+Neurology
+</div>
+</div>
+
+
+</div>
+
 <div id="s17" class="page hidden">
 <button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
 <h2>S-17</h2>
@@ -1010,7 +1174,13 @@ const filePasswords = {
     password: "AURI",
     page: "psych",
     path: "/AURI/PSYCH_EVAL.txt"
-  }
+  },
+  eeg: {
+    password: "AURI",
+    page: "eeg",
+    path: "/AURI/EEG.txt"
+  },
+  
 };
 
 function openPasswordBox(fileId) {
