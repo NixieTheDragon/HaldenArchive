@@ -2112,15 +2112,23 @@ Restricted interaction.
 
 <div id="logs" class="page hidden">
 <button onclick="openPage('root','/ROOT/')">Back</button>
-<h2>LOGS</h2>
-<div class="file" onclick="openPage('jlog1')">ARCHIVAL_ENTRY1.txt</div>
+<h2>ARCHIVE_LOGS</h2>
+
+<div class="folder" onclick="openPasswordBox('archived_auri')">AURI</div>
+</div>
+
+<div id="archived_auri" class="page hidden">
+<button onclick="openPage('logs','/ROOT/LOGS/')">Back</button>
+<h2>AURI</h2>
+
+<div class="file" onclick="openPage('jlog1','/ROOT/LOGS/AURI/ARCHIVAL_ENTRY1.txt')">ARCHIVAL_ENTRY1.txt</div>
 </div>
 
 <div id="jlog1" class="page hidden">
-<button onclick="openPage('logs','/LOGS/')">Back</button>
+<button onclick="openPage('archived_auri','/ROOT/LOGS/AURI/')">Back</button>
 <h2>Archival Entry #1</h2>
-<div class="log">
 
+<div class="log">
 JOHNATHAN LOG#1
 </div>
 </div>
@@ -2144,7 +2152,7 @@ It remembers her.
 </div>
 
   <div id="filePasswordBox" class="page hidden">
-  <button onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">Back</button>
+  <button onclick="openPage('logs','/ROOT/LOGS/')">Back</button>
   <h2>FILE ACCESS REQUIRED</h2>
 
   <input type="password" id="filePassInput" placeholder="ENTER FILE KEY">
@@ -2259,11 +2267,11 @@ const filePasswords = {
     page: "exp5",
     path: "/AURI/EXPERIMENTS/EXP_05.txt"
   },
-  jlog1: {
-    password: "AURI",
-    page: "jlog1",
-    path: "/AURI/LOGS/ARCHIVAL_ENTRY1.txt"
-  },
+  archived_auri: {
+  password: "AURI",
+  page: "archived_auri",
+  path: "/ROOT/LOGS/AURI/"
+}
 };
 
 function openPasswordBox(fileId) {
