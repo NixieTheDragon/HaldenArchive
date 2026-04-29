@@ -2107,7 +2107,7 @@ Restricted interaction.
 <div id="logs" class="page hidden">
 <button onclick="openPage('root','/ROOT/')">Back</button>
 <h2>LOGS</h2>
-<div class="file" onclick="openPage('jlog1','/LOGS/ARCHIVAL_ENTRY1')">ARCHIVAL_ENTRY1.txt</div>
+<div class="file" onclick="openPasswordBox('jlog1')">ARCHIVAL_ENTRY1.txt</div>
 </div>
 
 <div id="jlog1" class="page hidden">
@@ -2252,7 +2252,12 @@ const filePasswords = {
     password: "AURI",
     page: "exp5",
     path: "/AURI/EXPERIMENTS/EXP_05.txt"
-  }
+  },
+  jlog1: {
+    password: "AURI",
+    page: "jlog1",
+    path: "/AURI/LOGS/ARCHIVAL_ENTRY1.txt"
+  },
 };
 
 function openPasswordBox(fileId) {
