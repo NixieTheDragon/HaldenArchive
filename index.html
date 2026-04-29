@@ -351,6 +351,7 @@ button {
 <h2>SUBJECTS</h2>
 <div class="folder" onclick="openPage('auri','/ROOT/SUBJECTS/AURI/')">AURI</div>
 <div class="folder" onclick="openPage('s17','/ROOT/SUBJECTS/S-17/')">S-17</div>
+<div class="folder" onclick="openPage('w09','/ROOT/SUBJECTS/W-09/')">W-097</div>
 </div>
 
 <div id="auri" class="page hidden">
@@ -2104,9 +2105,25 @@ Restricted interaction.
 </div>
 </div>
 
+<div id="w09" class="page hidden">
+<button onclick="openPage('subjects','/ROOT/SUBJECTS/')">Back</button>
+<h2>W-09</h2>
+<div class="log">
+Timothy Vukovic
+</div>
+</div>
+
 <div id="logs" class="page hidden">
 <button onclick="openPage('root','/ROOT/')">Back</button>
 <h2>ARCHIVE_LOGS</h2>
+  
+
+<div class="folder" onclick="openPasswordBox('archived_experiments')">EXPERIMENTS</div>
+</div>
+
+<div id="archived_auri" class="page hidden">
+<button onclick="openPage('logs','/ROOT/LOGS/')">Back</button>
+<h2>AURI</h2>
 
 <div class="folder" onclick="openPasswordBox('archived_auri')">AURI</div>
 </div>
@@ -2115,9 +2132,11 @@ Restricted interaction.
 <button onclick="openPage('logs','/ROOT/LOGS/')">Back</button>
 <h2>AURI</h2>
 
+  
 <div class="file" onclick="openPage('jlog1','/ROOT/LOGS/AURI/ARCHIVAL_ENTRY.txt')">April_22_1998.txt</div>
 <div class="file" onclick="openPage('jlog2','/ROOT/LOGS/AURI/ARCHIVAL_ENTRY.txt')">April_23-30_1998.txt</div>
 <div class="file" onclick="openPage('jlog3','/ROOT/LOGS/AURI/ARCHIVAL_ENTRY.txt')">October_12_2007.txt</div>
+<div class="file" onclick="openPage('jlog4','/ROOT/LOGS/AURI/ARCHIVAL_ENTRY.txt')">November_2-18_2007.txt</div>
 </div>
 
 <div id="jlog1" class="page hidden">
@@ -2141,6 +2160,14 @@ JOHNATHAN LOG#2
 <h2>Archival Entry - October 12, 2007</h2>
 <div class="log">
 JOHNATHAN LOG#3
+</div>
+</div>
+
+<div id="jlog4" class="page hidden">
+<button onclick="openPage('archived_auri','/ROOT/LOGS/AURI/')">Back</button>
+<h2>Archival Entry - November 2-18, 2007</h2>
+<div class="log">
+JOHNATHAN LOG#4
 </div>
 </div>
 
