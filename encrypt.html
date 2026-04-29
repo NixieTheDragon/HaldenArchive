@@ -1,0 +1,78 @@
+<script>
+const protectedLogs = {
+  experiment1: {
+    title: "EXPERIMENT #1",
+    encrypted: {
+      salt: "PASTE_SALT_HERE",
+      iv: "PASTE_IV_HERE",
+      data: "PASTE_DATA_HERE"
+    }
+  }
+};
+
+async function getKey(password, salt) {
+  const enc = new TextEncoder();
+
+  const keyMaterial = await crypto.subtle.importKey(
+    "raw",
+    enc.encode(password),
+    "PBKDF2",
+    false,
+    ["deriveKey"]
+  );
+
+  return crypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt,
+      iterations: 250000,
+      hash: "SHA-256"
+    },
+    keyMaterial,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+}
+
+function base64ToArrayBuffer(base64) {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+
+  return bytes;
+}
+
+async function unlockEncryptedLog(logId) {
+  const password = prompt("ENTER ACCESS KEY:");
+
+  if (!password) return;
+
+  const log = protectedLogs[logId];
+
+  try {
+    const salt = base64ToArrayBuffer(log.encrypted.salt);
+    const iv = base64ToArrayBuffer(log.encrypted.iv);
+    const data = base64ToArrayBuffer(log.encrypted.data);
+
+    const key = await getKey(password, salt);
+
+    const decrypted = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv },
+      key,
+      data
+    );
+
+    const text = new TextDecoder().decode(decrypted);
+
+    document.getElementById("file-title").innerText = log.title;
+    document.getElementById("file-content").innerText = text;
+
+  } catch (err) {
+    alert("ACCESS DENIED");
+  }
+}
+</script>
