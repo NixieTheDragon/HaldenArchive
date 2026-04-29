@@ -1,15 +1,19 @@
-<script>
-const protectedLogs = {
-  experiment1: {
-    title: "EXPERIMENT #1",
-    encrypted: {
-      salt: "PASTE_SALT_HERE",
-      iv: "PASTE_IV_HERE",
-      data: "PASTE_DATA_HERE"
-    }
-  }
-};
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encrypt Log</title>
+</head>
+<body>
+  <h2>Encrypt Log Text</h2>
 
+  <textarea id="plainText" placeholder="Paste log text here" rows="10" cols="80"></textarea><br><br>
+  <input id="password" placeholder="Password" type="password"><br><br>
+  <button onclick="encryptText()">Encrypt</button>
+
+  <h3>Encrypted Output</h3>
+  <textarea id="output" rows="10" cols="80"></textarea>
+
+<script>
 async function getKey(password, salt) {
   const enc = new TextEncoder();
 
@@ -35,44 +39,34 @@ async function getKey(password, salt) {
   );
 }
 
-function base64ToArrayBuffer(base64) {
-  const binary = atob(base64);
-  const bytes = new Uint8Array(binary.length);
-
-  for (let i = 0; i < binary.length; i++) {
-    bytes[i] = binary.charCodeAt(i);
-  }
-
-  return bytes;
+function arrayBufferToBase64(buffer) {
+  return btoa(String.fromCharCode(...new Uint8Array(buffer)));
 }
 
-async function unlockEncryptedLog(logId) {
-  const password = prompt("ENTER ACCESS KEY:");
+async function encryptText() {
+  const text = document.getElementById("plainText").value;
+  const password = document.getElementById("password").value;
 
-  if (!password) return;
+  const enc = new TextEncoder();
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
 
-  const log = protectedLogs[logId];
+  const key = await getKey(password, salt);
 
-  try {
-    const salt = base64ToArrayBuffer(log.encrypted.salt);
-    const iv = base64ToArrayBuffer(log.encrypted.iv);
-    const data = base64ToArrayBuffer(log.encrypted.data);
+  const encrypted = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv },
+    key,
+    enc.encode(text)
+  );
 
-    const key = await getKey(password, salt);
+  const package = {
+    salt: arrayBufferToBase64(salt),
+    iv: arrayBufferToBase64(iv),
+    data: arrayBufferToBase64(encrypted)
+  };
 
-    const decrypted = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv },
-      key,
-      data
-    );
-
-    const text = new TextDecoder().decode(decrypted);
-
-    document.getElementById("file-title").innerText = log.title;
-    document.getElementById("file-content").innerText = text;
-
-  } catch (err) {
-    alert("ACCESS DENIED");
-  }
+  document.getElementById("output").value = JSON.stringify(package);
 }
 </script>
+</body>
+</html>
